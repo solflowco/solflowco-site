@@ -266,6 +266,34 @@ form.book { background: var(--card); color: var(--card-ink); border-radius: var(
 .fbot { margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--rule); display: flex; flex-wrap: wrap; gap: 10px 26px; justify-content: space-between; font-size: 14.5px; color: var(--dim); }
 
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; } }
+
+/* ================= small screens ================= */
+/* [hidden] must win over the display rules above (.sent, .fr, ...) */
+[hidden] { display: none !important; }
+/* jump links land below the sticky menu */
+html { scroll-padding-top: 84px; }
+@media (max-width: 880px) {
+  /* keep the section links: second row under the logo and button */
+  .nav-in { flex-wrap: wrap; row-gap: 6px; padding-block: 12px 10px; }
+  .nav-links { display: flex; order: 3; width: 100%; justify-content: space-between; gap: 12px; }
+  .nav-links a { padding-block: 8px; font-size: 15px; }
+  html { scroll-padding-top: 126px; }
+}
+@media (max-width: 560px) {
+  /* two-up gallery: portrait tiles in pairs, landscape shots full width */
+  .gal { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 36px; }
+  .tile, .tile.tall, .tile.half, .tile.square { grid-column: span 1; aspect-ratio: 3/4; }
+  .tile.wide { grid-column: span 2; aspect-ratio: 16/9; }
+  .tile { border-radius: 16px; }
+  /* comfortable tap targets for the contact links */
+  .baside dd a, .fcontact a { display: inline-block; padding-block: 10px; }
+  /* keep the underline hugging the text inside the taller tap area */
+  .baside dd a { border-bottom: 0; background: linear-gradient(var(--acc), var(--acc)) left bottom 8px / 100% 2px no-repeat; }
+  .baside dd { margin-top: 0; }
+  /* hero meta: one item per line, no leftover dividers */
+  .hero-meta { flex-direction: column; gap: 2px; }
+  .hero-meta span + span::before { content: none; }
+}
 </style>
 
 <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs>
